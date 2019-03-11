@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>Sample UI</title>
+</head>
+<body>
+
+  <h1> Find Image by choosing word </h1>
+  <div>
+    <h2>Select text file:</h2>
+    <input type="file" id="fileInput">
+    <pre id="fileDisplayArea"> </pre>
+    <button>Get Images</button> 
+    </div>
+
+</body>
+</html>
+
+<script>
+
+  window.onload = function showData() {
+    var fileInput = document.getElementById('fileInput');
+    var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+    fileInput.addEventListener('change', function(e) {
+      var file = fileInput.files[0];
+      var textType = /text.*/;
+
+      if (file.type.match(textType)) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var array=reader.result.split('\n');
+          fileDisplayArea.innerText = array.sort();
+          console.log(array[1]);
+        }
+        
+        reader.readAsText(file);
+        }  
+
+       else {
+        fileDisplayArea.innerText = "File not supported!"
+      }
+    });
+}
+
+
+</script>
+
+<script>
+  
+</script>
